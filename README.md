@@ -4,8 +4,8 @@
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/5erflies/more-places-service
+  - https://github.com/5erflies/photo-carousel-service
   - https://github.com/teamName/repo
   - https://github.com/teamName/repo
 
