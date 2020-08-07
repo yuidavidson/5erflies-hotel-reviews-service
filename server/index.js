@@ -16,17 +16,19 @@ app.use(express.json());
 
 app.post(ENDPOINT, function (req, res) {
 
-  console.log('post working!');
-  console.log(req.body);
-  console.log(res.body);
-  Review.seedReviews();
-//   Review.seedReviews((err, data) => {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       console.log(data);
-//     }
-//   });
+  // console.log('post working!');
+  // console.log(req.body);
+  // console.log(res.body);
+  // Review.seedReviews();
+  Review.seedReviews((err, data) => {
+    if (err) {
+      console.log(err);
+      res.sendStatus(500).send(err);
+    } else {
+      console.log(data);
+      res.sendStatus(200);
+    }
+  });
 });
 
 app.listen(PORT, function() {

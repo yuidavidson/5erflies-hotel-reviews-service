@@ -39,36 +39,49 @@ var Review = mongoose.model('Review', reviewSchema);
 
 // module.exports.Review = Review;
 
-var saveData = (data) => {
-  console.log('getting to saveData');
-  console.log(data);
-  for (var i = 0; i < data.length; i++) {
-    var review = new Review({
-      username: data[i].username
-    });
-    console.log('getting to iteration');
-    review.save();
-  }
-};
+// var saveData = (data) => {
+//   // console.log('getting to saveData');
+//   // console.log(data);
+//   for (var i = 0; i < data.length; i++) {
+//     var review = new Review({
+//       username: data[i].username
+//     });
+//     // console.log('getting to iteration');
+//     review.save();
+//   }
+// };
 
 // module.exports.saveData = saveData;
 
 const seedReviews = (callback) => {
-  // if (err) {
-  //   console.log(err);
-  // } else {
-    var reviews = [];
-    for (var i = 0; i < 10; i++) {
-      var review = new Review ({
-        username: faker.name.firstName()
-      });
-      reviews.push(review);
-    }
-    console.log('SeedReview kindof working');
-    saveData(reviews);
-    // reviews.forEach(review => {
-    //   saveData(review);
-    // });
-  // }
+  db.dropDatabase();
+  var reviews = [];
+  for (var i = 0; i < 10; i++) {
+    var review = new Review ({
+      propertyName: faker.company.companyName(),
+      username: faker.name.firstName(),
+      avatar: faker.internet.avatar(),
+      review: faker.lorem.paragraph(),
+      dayPosted: faker.date.past(),
+      rating: {
+        cleanliness: faker.random.number({min: 0, max: 5}),
+        communication: faker.random.number({min: 0, max: 5}),
+        accuracy: faker.random.number({min: 0, max: 5}),
+        checkIn: faker.random.number({min: 0, max: 5}),
+        location: faker.random.number({min: 0, max: 5}),
+        value: faker.random.number({min: 0, max: 5})
+      },
+      response: {
+        hostname: faker.name.firstName(),
+        avatar: faker.internet.avatar(),
+        response: faker.lorem.sentences(),
+        dayCommented: faker.date.past()
+      }
+    });
+    reviews.push(review);
+    review.save();
+  }
+  // saveData(reviews);
+  callback(null, reviews);
 };
 module.exports.seedReviews = seedReviews;
