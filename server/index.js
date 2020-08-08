@@ -1,17 +1,18 @@
 const express = require('express');
-let app = express();
+
+const app = express();
 
 // const seeder = require('../seeder.js');
-const Review = require('../db/model/reviews.js');
+// const Review = require('../db/model/reviews.js');
 
 const ENDPOINT = '/test';
-const PORT = 3010;
+const PORT = 3011;
 
 app.use(express.static(__dirname + '/../client/dist'));
 
 app.use(express.json());
 
-//post request of fake data
+// post request of fake data
 // app.post(ENDPOINT, function (req, res) {
 
 //   Review.seedReviews((err, data) => {
@@ -25,6 +26,10 @@ app.use(express.json());
 //   });
 // });
 
-app.listen(PORT, function() {
-  console.log(`listening on port ${PORT}`);
+app.listen(PORT, (err) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(`listening on port ${PORT}`);
+  }
 });
