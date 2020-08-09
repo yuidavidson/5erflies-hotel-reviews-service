@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-// const Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 // const faker = require('faker');
 
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/reviews');
 
 // mongoose.Promise = global.Promise;
 
@@ -16,6 +16,8 @@ db.once('open', () => {
 // schema for reviews
 
 const reviewSchema = new mongoose.Schema({
+  propertyId: Number,
+  reviewId: Number,
   propertyName: String,
   username: String,
   avatar: String,

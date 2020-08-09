@@ -35,6 +35,6 @@
     "eslint-plugin-react": "^7.20.5",
     "eslint-plugin-react-hooks": "^4.0.8",
     "faker": "^4.1.0",
-    "webpack": "^4.44.1"
+    "webpack": "^2.2.1"
   }
 }
