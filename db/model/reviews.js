@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
-// const faker = require('faker');
 
 mongoose.connect('mongodb://localhost/reviews');
 

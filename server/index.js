@@ -19,6 +19,7 @@ app.use(express.json());
 // of property which we are looking at. or better yet, just the most recent 6
 app.get(ENDPOINT, (req, res) => {
   // console.log('GET request working');
+  // console.log(res.body.value);
   db.getData((err, data) => {
     if (err) {
       // console.log(err);
