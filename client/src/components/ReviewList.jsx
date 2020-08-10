@@ -1,11 +1,14 @@
 import React from 'react';
 
+import ReviewItem from './ReviewItem.jsx';
+
 class ReviewList extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
+    //map over props.reviews and assign to review
     if(!this.props.reviews) {
       return (
         <div>
@@ -18,17 +21,11 @@ class ReviewList extends React.Component {
         </div>
       );
     } else {
+      var review = this.props.reviews.map(
+        review => <ReviewItem key={review.reviewId} review={review}/>
+      )
       return (
-        <div>
-          <div>
-            <span>
-              <img src={this.props.reviews[0].avatar}/>
-            </span>
-            <span>{this.props.reviews[0].username}</span>
-            <span>{this.props.reviews[0].dayPosted}</span>
-          </div>
-          <div>{this.props.reviews[0].review}</div>
-        </div>
+        <ul>{review}</ul>
       );
     }
   }
