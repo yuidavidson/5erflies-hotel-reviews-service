@@ -16,7 +16,7 @@ app.use(express.json());
 
 // create get request for the fake data
 // TODO: currently getting all properties data => eventually want to be getting only the data
-// of property which we are looking at. or better yet, just the most recent 6
+// of property which we are looking at.
 app.get(ENDPOINT, (req, res) => {
   // console.log('GET request working');
   // console.log(res.body.value);

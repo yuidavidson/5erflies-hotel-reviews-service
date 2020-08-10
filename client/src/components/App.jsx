@@ -12,44 +12,96 @@ class App extends React.Component {
     this.state = {
       reviews: '',
       dataSet: false,
+      totalRating: '',
+      averageRatings: '',
     };
     this.getReviews = this.getReviews.bind(this);
     this.setData = this.setData.bind(this);
   }
 
-
-  // using axios for get request
-  // axios.get('')
-  // .then(function (response) {
-  //   // handle success
-  //   console.log(response);
-  // })
-  // .catch(function (error) {
-  //   // handle error
-  //   console.log(error);
-  // })
-
   componentDidMount() {
-    console.log('component properly mounting');
     this.getReviews(this.setData);
   }
 
   getReviews(callback) {
-    console.log('getReviews working');
     axios.get(ENDPOINT)
-    //   .then( (response) => {
-    //   console.log(response);
-    // })
     .then(callback)
-    // .then(console.log('something is working'))
     .catch( (error) => {
       console.log(error);
     })
   }
 
   setData(data) {
-    console.log('setData working');
-    this.setState({ reviews: data.data[0], dataSet: true });
+    // TODO: to change after properly pulling data of each property
+
+    const propertyReviews = [];
+    let accuracy = 0;
+    let checkIn = 0;
+    let cleanliness = 0;
+    let communication = 0;
+    let location = 0;
+    let value = 0;
+    let reviewCount = 0;
+
+    // TODO: can probably refactor this part and the assignment to state into the average function
+    // and input all the correct propertyId's value into the arguments
+
+    for (let i = 0; i < data.data.length; i += 1) {
+      if (data.data[i].propertyId === 0) {
+        reviewCount += 1;
+        propertyReviews.push(data.data[i]);
+        accuracy += data.data[i].rating.accuracy;
+        checkIn += data.data[i].rating.checkIn;
+        cleanliness += data.data[i].rating.cleanliness;
+        communication += data.data[i].rating.communication;
+        location += data.data[i].rating.location;
+        value += data.data[i].rating.value;
+      }
+    }
+
+    const average = (...args) => {
+      let newNum = 0;
+      for (let i = 0; i < args.length; i += 1) {
+        newNum += args[i];
+      }
+      if (args.length === 1) {
+        newNum = (newNum * 10) / reviewCount;
+      } else {
+        newNum = (newNum * 10) / args.length;
+      }
+      const lastDigit = newNum.toString().split('').pop();
+      if (lastDigit >= 5) {
+        newNum = Math.ceil(newNum) / 10;
+      } else {
+        newNum = Math.floor(newNum) / 10;
+      }
+      return newNum;
+    };
+
+    accuracy = average(accuracy);
+    checkIn = average(checkIn);
+    cleanliness = average(cleanliness);
+    communication = average(communication);
+    location = average(location);
+    value = average(value);
+    const totalRating = average(accuracy, checkIn, cleanliness, communication, location, value);
+
+    this.setState({
+      reviews: propertyReviews,
+      dataSet: true,
+      totalRating: {
+        totalRating: totalRating,
+        reviewCount: reviewCount,
+      },
+      averageRatings: {
+        accuracy: accuracy,
+        checkIn: checkIn,
+        cleanliness: cleanliness,
+        communication: communication,
+        location: location,
+        value: value,
+      }
+    });
   }
 
   render() {
@@ -64,8 +116,8 @@ class App extends React.Component {
     } else {
       return (
         <div>
-          <TotalRating />
-          <Ratings />
+          <TotalRating totalRating={this.state.totalRating}/>
+          <Ratings averageRatings={this.state.averageRatings}/>
           <ReviewList reviews={this.state.reviews} />
         </div>
       )

@@ -6,13 +6,23 @@ class TotalRating extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <span>Star</span>
-        <span>Total Ratings</span>
-        <span>Average Rating</span>
-      </div>
-    )
+    if (!this.props.totalRating) {
+      return (
+        <div>
+          <span>Star</span>
+          <span>Average Rating</span>
+          <span>Total Ratings</span>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <span>Star</span>
+          <span>{this.props.totalRating.totalRating}</span>
+          <span>({this.props.totalRating.reviewCount} reviews)</span>
+        </div>
+      )
+    }
   }
 }
 

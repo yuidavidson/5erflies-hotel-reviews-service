@@ -3,15 +3,6 @@ import React from 'react';
 class ReviewList extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   review: '',
-    // };
-    // this.pickProperty = this.pickProperty.bind(this);
-  }
-
-  componentDidMount() {
-    // this.setState({review: this.props.reviews});
-    console.log(this.props);
   }
 
   render() {
@@ -31,12 +22,12 @@ class ReviewList extends React.Component {
         <div>
           <div>
             <span>
-              <img src={this.props.reviews.avatar}/>
+              <img src={this.props.reviews[0].avatar}/>
             </span>
-            <span>{this.props.reviews.username}</span>
-            <span>{this.props.reviews.dayPosted}</span>
+            <span>{this.props.reviews[0].username}</span>
+            <span>{this.props.reviews[0].dayPosted}</span>
           </div>
-          <div>{this.props.reviews.review}</div>
+          <div>{this.props.reviews[0].review}</div>
         </div>
       );
     }
