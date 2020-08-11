@@ -4,7 +4,8 @@ import TotalRating from './TotalRating.jsx';
 import Ratings from './Ratings.jsx';
 import ReviewList from './ReviewList.jsx';
 
-const ENDPOINT = '/reviews';
+const query = window.location.search;
+const ENDPOINT = `/reviews${query}`;
 
 class App extends React.Component {
   constructor(props) {
@@ -32,8 +33,7 @@ class App extends React.Component {
   }
 
   setData(data) {
-    // TODO: to change after properly pulling data of each property
-
+    console.log(data);
     const propertyReviews = [];
     let accuracy = 0;
     let checkIn = 0;
@@ -47,16 +47,14 @@ class App extends React.Component {
     // and input all the correct propertyId's value into the arguments
 
     for (let i = 0; i < data.data.length; i += 1) {
-      if (data.data[i].propertyId === 0) {
-        reviewCount += 1;
-        propertyReviews.push(data.data[i]);
-        accuracy += data.data[i].rating.accuracy;
-        checkIn += data.data[i].rating.checkIn;
-        cleanliness += data.data[i].rating.cleanliness;
-        communication += data.data[i].rating.communication;
-        location += data.data[i].rating.location;
-        value += data.data[i].rating.value;
-      }
+      reviewCount += 1;
+      propertyReviews.push(data.data[i]);
+      accuracy += data.data[i].rating.accuracy;
+      checkIn += data.data[i].rating.checkIn;
+      cleanliness += data.data[i].rating.cleanliness;
+      communication += data.data[i].rating.communication;
+      location += data.data[i].rating.location;
+      value += data.data[i].rating.value;
     }
 
     const average = (...args) => {
