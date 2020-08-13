@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import TotalRating from './TotalRating.jsx';
-import Ratings from './Ratings.jsx';
-import ReviewList from './ReviewList.jsx';
+import TotalRating from './TotalRating';
+import Ratings from './Ratings';
+import ReviewList from './ReviewList';
 
 const query = window.location.search;
 const ENDPOINT = `/reviews${query}`;

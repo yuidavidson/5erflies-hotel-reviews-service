@@ -1,4 +1,5 @@
 import React from 'react';
+// import React, { Fragment } from 'react';
 
 class Ratings extends React.Component {
   constructor(props) {
