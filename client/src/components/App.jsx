@@ -136,10 +136,6 @@ class App extends React.Component {
           <ReviewList />
         </div>
       );
-    // } else if (this.state.openModal === true) {
-    //   return (
-
-    //   )
     }
     return (
       <div>
@@ -147,9 +143,8 @@ class App extends React.Component {
         <Ratings averageRatings={this.state.averageRatings}/>
         <ReviewList reviews={this.state.reviews} />
         {/* <Button totalRating={this.state.totalRating} handleClick={this.handleClick} /> */}
-        <h1>Modal Time!</h1>
-        {<button onClick={this.openModal}>Show modal</button>}
-        <Modal closeModal={this.closeModal} show={this.state.show}/>
+        {<button onClick={this.openModal}>Show all {this.state.totalRating.reviewCount} reviews</button>}
+        <Modal closeModal={this.closeModal} show={this.state.show} totalRating={this.state.totalRating} averageRatings={this.state.averageRatings} reviews={this.state.reviews}/>
       </div>
     );
   }
