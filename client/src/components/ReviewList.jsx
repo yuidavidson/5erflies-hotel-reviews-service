@@ -9,7 +9,7 @@ class ReviewList extends React.Component {
 
   render() {
     //map over props.reviews and assign to review
-    if(!this.props.reviews) {
+    if (!this.props.reviews) {
       return (
         <div>
           <div>

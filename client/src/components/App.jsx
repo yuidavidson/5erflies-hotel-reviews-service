@@ -1,8 +1,14 @@
 import React from 'react';
 import axios from 'axios';
-import TotalRating from './TotalRating';
-import Ratings from './Ratings';
-import ReviewList from './ReviewList';
+import TotalRating from './TotalRating.jsx';
+import Ratings from './Ratings.jsx';
+import ReviewList from './ReviewList.jsx';
+import Button from './Button.jsx';
+import Modal from './Modal.jsx';
+// import Child from './Child.jsx';
+
+// const appRoot = document.getElementById('app-root');
+// const modalRoot = document.getElementById('modal-root');
 
 const query = window.location.search;
 const ENDPOINT = `/reviews${query}`;
@@ -15,9 +21,14 @@ class App extends React.Component {
       dataSet: false,
       totalRating: '',
       averageRatings: '',
+      buttonClicked: false,
+      show: false,
     };
     this.getReviews = this.getReviews.bind(this);
     this.setData = this.setData.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   componentDidMount() {
@@ -33,7 +44,7 @@ class App extends React.Component {
   }
 
   setData(data) {
-    console.log(data);
+    // console.log(data);
     const propertyReviews = [];
     let accuracy = 0;
     let checkIn = 0;
@@ -88,18 +99,32 @@ class App extends React.Component {
       reviews: propertyReviews,
       dataSet: true,
       totalRating: {
-        totalRating: totalRating,
-        reviewCount: reviewCount,
+        totalRating,
+        reviewCount,
       },
       averageRatings: {
-        accuracy: accuracy,
-        checkIn: checkIn,
-        cleanliness: cleanliness,
-        communication: communication,
-        location: location,
-        value: value,
-      }
+        accuracy,
+        checkIn,
+        cleanliness,
+        communication,
+        location,
+        value,
+      },
     });
+  }
+
+  // handleClick() {
+  //   console.log('button was clicked!');
+  //   // this.setState({buttonClicked: true});
+  //   this.setState({ openModal: true });
+  // }
+
+  openModal() {
+    this.setState({ show: true });
+  }
+
+  closeModal() {
+    this.setState({ show: false });
   }
 
   render() {
@@ -111,20 +136,23 @@ class App extends React.Component {
           <ReviewList />
         </div>
       );
-    } else {
-      return (
-        <div>
-          <TotalRating totalRating={this.state.totalRating}/>
-          <Ratings averageRatings={this.state.averageRatings}/>
-          <ReviewList reviews={this.state.reviews} />
-        </div>
-      )
+    // } else if (this.state.openModal === true) {
+    //   return (
+
+    //   )
     }
+    return (
+      <div>
+        <TotalRating totalRating={this.state.totalRating}/>
+        <Ratings averageRatings={this.state.averageRatings}/>
+        <ReviewList reviews={this.state.reviews} />
+        {/* <Button totalRating={this.state.totalRating} handleClick={this.handleClick} /> */}
+        <h1>Modal Time!</h1>
+        {<button onClick={this.openModal}>Show modal</button>}
+        <Modal closeModal={this.closeModal} show={this.state.show}/>
+      </div>
+    );
   }
 }
-
-// const App = () => (
-//   <div>React Rendering</div>
-// );
 
 export default App;
