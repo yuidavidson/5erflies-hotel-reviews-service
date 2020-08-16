@@ -1,10 +1,65 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TotalRating from './TotalRating.jsx';
-import Ratings from './Ratings.jsx';
-import ReviewList from './ReviewList.jsx';
+import styled from 'styled-components';
+import TotalRating from './TotalRating';
+import Ratings from './Ratings';
+import ReviewList from './ReviewList';
 
 // const modalRoot = document.getElementById('modal-root');
+
+const ModalCloseButton = styled.div`
+position: absolute;
+right: -1rem;
+top: -1rem;
+width: 2rem;
+height: 2rem;
+padding: 0.5rem;
+margin: 0 auto;
+border-radius: 50%;
+box-shadow: 1px 1px 1px #0000003a;
+cursor: pointer;
+border: 1px solid rgba(0, 0, 0, 0.562);
+`;
+
+const StyledModal = styled.div`  width: 500px;
+position: relative;
+margin: 0px auto;
+padding: 20px;
+background-color: #fff;
+border-radius: 2px;
+transform: translateY(100%);
+transition: transform 0.2s ease;
+box-shadow: 0 2px 8px 3px;
+font-family: Helvetica, Arial, sans-serif;
+`;
+
+// const Button = styled.div`
+//   background: transparent;
+//   border-radius: 3px;
+//   border: 2px solid palevioletred;
+//   color: palevioletred;
+//   margin: 0 1em;
+//   padding: 0.25em 1em;
+// `;
+
+const Overlay = styled.div`
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: #0000003a;
+transition: opacity 0.2s ease;
+display: ${props => props.show ? 'block' : 'none'};
+`;
+
+// const show = {
+//   display: 'block',
+// };
+
+// const hide = {
+//   display: 'none',
+// }
 
 function Modal(props) {
   const {
@@ -12,44 +67,20 @@ function Modal(props) {
   } = props;
   const modal = (
     <>
-      <div className={show === true ? 'overlay' : 'hide'} onClick={closeModal}/>
-      <div className={show === true ? 'modal' : 'hide'}>
-        <button onClick={closeModal}>X</button>
+      {/* <Overlay className={show === true ? 'overlay' : 'hide'} onClick={closeModal}/> */}
+      <Overlay props={show} />
+      <StyledModal className={show === true ? 'modal' : 'hide'}>
+        {/* <Button /> */}
+        <ModalCloseButton onClick={closeModal}>X</ModalCloseButton>
         <TotalRating totalRating={totalRating} />
         <Ratings averageRatings={averageRatings} />
         <ReviewList reviews={reviews} />
-      </div>
+      </StyledModal>
     </>
   );
   return ReactDOM.createPortal(
     modal, document.getElementById('modal-root'),
   );
 }
-
-// class Modal extends React.Component {
-//   constructor(props) {
-//     super(props);
-//   }
-
-//   render() {
-//     if (!this.props.totalRatings) {
-//       return (
-//         <div>Not yet Rendered</div>
-//       );
-//     }
-//     return ReactDOM.createPortal(
-//       <>
-//         <div className={this.props.show === true ? 'overlay' : 'hide'} onClick={this.props.closeModal}/>
-//           <div className={this.props.show === true ? 'modal' : 'hide'}>
-//           <button onClick={this.props.closeModal}>X</button>
-//           <h1>Modal heading</h1>
-//           <p>This is modal content</p>
-//           <TotalRating totalRating={this.props.totalRating} />
-//       </div>
-//     </>,
-//     document.getElementById('modal-root'),
-//     );
-//   }
-// }
 
 export default Modal;

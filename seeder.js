@@ -29,6 +29,21 @@ mongoose.connect(url, (err) => {
         // console.log(reviewCount);
         // console.log(i);
         for (let j = 0; j < reviewCount; j += 1) {
+
+          // working idea to change format of date => might not use and just change on server or client side
+
+          // const fakeDate = () => {
+          //   const date = JSON.parse(JSON.stringify(faker.date.past()).slice(1, 8));
+          //   // console.log(date);
+          //   // console.log(typeof date);
+          //   //probably split letters into an array getting everything that's a number and join together and parse it back to JSON and return to get something like 201911
+          //   // => or I guess 2019-11 is fine and I can fix that on server side or client side
+          //   //probably makes more sense
+          //   return date;
+          // };
+          // const aFakeDate = fakeDate();
+          // console.log(aFakeDate);
+
           const revId = j;
           const review = new Review ({
             propertyId: propId,

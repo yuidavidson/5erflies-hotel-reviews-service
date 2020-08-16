@@ -1,20 +1,3 @@
-{
-  "name": "5erflies-hotel-reviews-services",
-  "version": "1.0.0",
-  "description": "",
-  "author": "Yui Davidson",
-  "license": "",
-  "engines": {
-    "node": ">=6.13.0"
-  },
-  "scripts": {
-    "react-dev": "webpack -d --watch",
-    "server-dev": "nodemon server/index.js",
-    "seed": "node seeder.js",
-    "test": "jest",
-    "test-watch": "jest --watch",
-    "test-coverage": "jest --coverage"
-  },
   "dependencies": {
     "@babel/polyfill": "^7.0.0-beta.51",
     "@babel/preset-react": "^7.0.0-beta.51",
@@ -31,16 +14,14 @@
     "mongodb": "^3.6.0",
     "mongoose": "^5.9.27",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-modal": "^3.11.2",
-    "styled-components": "^5.1.1"
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.1",
     "@babel/plugin-syntax-jsx": "^7.10.4",
     "@babel/preset-env": "^7.11.0",
     "babel-core": "^6.23.1",
     "babel-loader": "^8.1.0",
-    "babel-plugin-styled-components": "^1.11.1",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.23.0",
     "eslint": "^7.6.0",
@@ -51,10 +32,8 @@
     "eslint-plugin-react": "^7.20.5",
     "eslint-plugin-react-hooks": "^4.0.8",
     "faker": "^4.1.0",
-    "file-loader": "^6.0.0",
     "jest-enzyme": "^7.1.2",
     "sinon": "^9.0.3",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   }
-}
