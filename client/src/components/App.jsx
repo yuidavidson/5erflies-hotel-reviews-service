@@ -9,7 +9,36 @@ import Modal from './Modal.jsx';
 const query = window.location.search;
 const ENDPOINT = `/reviews${query}`;
 
+const AppStyle = styled.div`
+  // overflow: ${props => props.show ? 'hidden' : 'auto'};
+  // height: 1000px;
+  // overflow: hidden;
+`;
+
+// what a bad name
+const ModalLocation = styled.div`
+  // display: ${props => props.show ? 'none' : 'block'};
+  // display: none;
+`;
+
 const ModalOpenButton = styled.button`
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  width: auto;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  padding-left: 23px;
+  padding-right: 23px;
+  border-radius: 8px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(34, 34, 34);
+  background: rgb(255, 255, 255);
   &:hover {
     cursor: pointer;
     background-color: #d9d9d9;
@@ -139,7 +168,7 @@ class App extends React.Component {
       const month = numberToMonth(date.slice(5, 7));
       return month.concat(' ', year);
     };
-
+    console.log(propertyReviews);
     // assigns formatted dates to post/comment keys
     for (let i = 0; i < propertyReviews.length; i += 1) {
       propertyReviews[i].dayPosted = numbersToDate(propertyReviews[i].dayPosted);
@@ -187,15 +216,18 @@ class App extends React.Component {
     }
     return (
       <div>
-
-        <TotalRating totalRating={this.state.totalRating}/>
+        {/* <AppStyle props={this.state.show}> */}
+        <TotalRating totalRating={this.state.totalRating} show={this.state.show}/>
 
         {/* <StyledTotalRating totalRating={this.state.totalRating}> */}
         <Ratings averageRatings={this.state.averageRatings}/>
         <ReviewList reviews={this.state.reviews} />
         {<ModalOpenButton onClick={this.openModal}>Show all {this.state.totalRating.reviewCount} reviews</ModalOpenButton>}
-        {/* {<ModalButton onClick={this.openModal}>Show all {this.state.totalRating.reviewCount} reviews</ModalButton>} */}
+
+        <>
         <Modal closeModal={this.closeModal} show={this.state.show} totalRating={this.state.totalRating} averageRatings={this.state.averageRatings} reviews={this.state.reviews}/>
+        </>
+        {/* </AppStyle> */}
       </div>
     );
   }

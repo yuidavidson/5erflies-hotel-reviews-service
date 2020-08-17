@@ -1,19 +1,14 @@
 const faker = require('faker');
-// const MongoClient = require("mongodb").MongoClient;
+
 const mongoose = require('mongoose');
 
-// import Review model
 const Review = require('./db/model/reviews.js');
-
-// mongoose.connect('mongodb://localhost/reviews0');
 
 const db = mongoose.connection;
 
 const url = 'mongodb://localhost:27017/reviews';
 
 // // use npm run seed to seed database with 100 properties with 25-75 reviews each
-
-// MongoClient.connect(url, function(err, client) {
 mongoose.connect(url, (err) => {
   if (err) {
     console.log(err);
@@ -26,24 +21,10 @@ mongoose.connect(url, (err) => {
         const propId = i;
         const property = faker.company.companyName();
         const reviewCount = Math.floor(Math.random() * 50) + 25;
-        // console.log(reviewCount);
-        // console.log(i);
+        const postDate = faker.date.past();
+        const hostName = faker.name.firstName();
+        const hostAvatar = faker.internet.avatar();
         for (let j = 0; j < reviewCount; j += 1) {
-
-          // working idea to change format of date => might not use and just change on server or client side
-
-          // const fakeDate = () => {
-          //   const date = JSON.parse(JSON.stringify(faker.date.past()).slice(1, 8));
-          //   // console.log(date);
-          //   // console.log(typeof date);
-          //   //probably split letters into an array getting everything that's a number and join together and parse it back to JSON and return to get something like 201911
-          //   // => or I guess 2019-11 is fine and I can fix that on server side or client side
-          //   //probably makes more sense
-          //   return date;
-          // };
-          // const aFakeDate = fakeDate();
-          // console.log(aFakeDate);
-
           const revId = j;
           const review = new Review ({
             propertyId: propId,
@@ -52,7 +33,7 @@ mongoose.connect(url, (err) => {
             username: faker.name.firstName(),
             avatar: faker.internet.avatar(),
             review: faker.lorem.paragraph(),
-            dayPosted: faker.date.past(),
+            dayPosted: postDate,
             rating: {
               cleanliness: faker.random.number({ min: 1, max: 5 }),
               communication: faker.random.number({ min: 1, max: 5 }),
@@ -62,82 +43,19 @@ mongoose.connect(url, (err) => {
               value: faker.random.number({ min: 0, max: 5 }),
             },
             response: {
-              hostname: faker.name.firstName(),
-              avatar: faker.internet.avatar(),
+              hostname: hostName,
+              avatar: hostAvatar,
               response: faker.lorem.sentences(),
-              dayCommented: faker.date.past(),
+              dayCommented: postDate,
             },
           });
           reviews.push(review);
           review.save();
         }
       }
+      console.log(reviews);
       console.log('seeding done');
     };
     seedReviews();
   }
 });
-
-// const pipeline = [{
-//   $group: {
-//     propertyId: 0,
-//   },
-// }];
-
-// db.getCollection('reviews').aggregate(pipeline);
-// db.getCollection('reviews').find();
-
-// const eachPropertySeeder = () => {
-//   // changed 100 to 1
-//   for (let i = 0; i < 1; i += 1) {
-//     const url = `mongodb://localhost:27017/reviews${i}`;
-//     mongoose.connect(url, (err) => {
-//       if (err) {
-//         console.log(err);
-//       } else {
-//         const seedReviews = () => {
-//           console.log('seeding started');
-//           db.dropDatabase();
-//           const reviews = [];
-//           const propId = i;
-//           const property = faker.company.companyName();
-//           const reviewCount = Math.floor(Math.random() * 50) + 25;
-//           // replaced reviewCount with 1
-//           for (let j = 0; j < reviewCount; j += 1) {
-//             const revId = j;
-//             const review = new Review ({
-//               propertyId: propId,
-//               reviewId: revId,
-//               propertyName: property,
-//               username: faker.name.firstName(),
-//               avatar: faker.internet.avatar(),
-//               review: faker.lorem.paragraph(),
-//               dayPosted: faker.date.past(),
-//               rating: {
-//                 cleanliness: faker.random.number({ min: 1, max: 5 }),
-//                 communication: faker.random.number({ min: 1, max: 5 }),
-//                 accuracy: faker.random.number({ min: 1, max: 5 }),
-//                 checkIn: faker.random.number({ min: 1, max: 5 }),
-//                 location: faker.random.number({ min: 1, max: 5 }),
-//                 value: faker.random.number({ min: 0, max: 5 }),
-//               },
-//               response: {
-//                 hostname: faker.name.firstName(),
-//                 avatar: faker.internet.avatar(),
-//                 response: faker.lorem.sentences(),
-//                 dayCommented: faker.date.past(),
-//               },
-//             });
-//             console.log(review);
-//             reviews.push(review);
-//             review.save();
-//           }
-//           console.log('seeding done');
-//         };
-//         seedReviews();
-//       }
-//     });
-//   }
-// };
-
-// eachPropertySeeder();

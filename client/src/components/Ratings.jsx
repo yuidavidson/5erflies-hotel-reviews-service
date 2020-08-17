@@ -10,8 +10,10 @@ const AllRatings = styled.div`
 
 const RatingRow = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  // flex-direction: row;
+  flex-direction ${props => props.show ? 'column' : 'row'};
+  justify-content: space-around;
+  padding-right: 50px;
 `;
 
 const RatingItem = styled.div`
@@ -23,17 +25,23 @@ const RatingItem = styled.div`
 
 const RatingType = styled.span`
   width: 150px;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  padding-right: 50px;
 `;
 
 const RatingBar = styled.div`
   height: 4px;
   width: 130px;
-  position: relative;
+  // position: relative;
   background: rgba(0, 0, 0, 0.14);
-  -moz-border-radius: 25px;
-  -webkit-border-radius: 25px;
+  // -moz-border-radius: 25px;
+  // -webkit-border-radius: 25px;
   border-radius: 25px;
   margin: 2px;
+  // padding-left: 50px;
 `;
 
 const Meter = styled.span`
@@ -42,14 +50,18 @@ const Meter = styled.span`
   width: ${(props) => (props.averageRating * 20)}%;
   border-radius: 25px;
   background: black;
-  position: relative;
-  overflow: hidden;
+  // position: relative;
+  // overflow: hidden;
 `;
 
 const RatingNumber = styled.span`
   width: 20px;
   text-align: center;
   padding: 2px;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
 `;
 
 class Ratings extends React.Component {
@@ -64,7 +76,7 @@ class Ratings extends React.Component {
       // this looks bad and can definitely refactor but make it work first, clean up later
       return (
         <AllRatings>
-          <RatingRow>
+          <RatingRow show={this.props.show}>
             <RatingItem>
               <RatingType>Cleanliness</RatingType>
               <span>
@@ -84,7 +96,7 @@ class Ratings extends React.Component {
               <RatingNumber>{this.props.averageRatings.accuracy}</RatingNumber>
             </RatingItem>
           </RatingRow>
-          <RatingRow>
+          <RatingRow show={this.props.show}>
             <RatingItem>
               <RatingType>Communication</RatingType>
               <span>
@@ -104,7 +116,7 @@ class Ratings extends React.Component {
               <RatingNumber>{this.props.averageRatings.location}</RatingNumber>
             </RatingItem>
           </RatingRow>
-          <RatingRow>
+          <RatingRow show={this.props.show}>
             <RatingItem>
               <RatingType>Check-in</RatingType>
               <span>

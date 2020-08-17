@@ -3,7 +3,28 @@ import styled from 'styled-components';
 import star from './star.png';
 
 const Wrapper = styled.div`
-  boarder-radius: 50px;
+display: flex;
+flex-direction: row;
+align-items: center;
+padding-top: 25px;
+padding-bottom: 10px;
+`;
+const StarFlex = styled.img`
+  padding: 5px;
+`;
+
+const TotalRatingFlex = styled.div`
+  padding: 5px;
+  font-size: 22px;font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  // font-size: ${props => props.show ? '50px' : '10px'};
+  font-weight: bold;
+`;
+
+const ReviewCountFlex = styled.div`
+  padding: 5px;
+  font-size: 22px;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-weight: bold;
 `;
 
 class TotalRating extends React.Component {
@@ -24,11 +45,11 @@ class TotalRating extends React.Component {
       return (
         <div>
         <Wrapper>
-          <span>
-            <img src={star} alt='red star'/>
-          </span>
-          <span>{this.props.totalRating.totalRating}</span>
-          <span>({this.props.totalRating.reviewCount} reviews)</span>
+          {/* <span> */}
+            <StarFlex src={star} alt='red star'/>
+          {/* </span> */}
+          <TotalRatingFlex show={this.props.show}>{this.props.totalRating.totalRating}</TotalRatingFlex>
+          <ReviewCountFlex>({this.props.totalRating.reviewCount} reviews)</ReviewCountFlex>
         </Wrapper>
         </div>
       )

@@ -9,57 +9,59 @@ import ReviewList from './ReviewList';
 
 const ModalCloseButton = styled.div`
 position: absolute;
-right: -1rem;
-top: -1rem;
+left: 1rem;
+top: 1rem;
 width: 2rem;
 height: 2rem;
 padding: 0.5rem;
 margin: 0 auto;
-border-radius: 50%;
-box-shadow: 1px 1px 1px #0000003a;
 cursor: pointer;
-border: 1px solid rgba(0, 0, 0, 0.562);
 `;
 
-const StyledModal = styled.div`  width: 500px;
-position: relative;
+const StyledModal = styled.div`
+width: 70vh;
+height: 80vh;
+position: sticky;
 margin: 0px auto;
 padding: 20px;
 background-color: #fff;
-border-radius: 2px;
-transform: translateY(100%);
+border-radius: 10px;
+transform: translateY(-700px);
 transition: transform 0.2s ease;
-box-shadow: 0 2px 8px 3px;
 font-family: Helvetica, Arial, sans-serif;
+// overflow: hidden;
+display: ${props => props.show ? 'flex' : 'none'};
 `;
-
-// const Button = styled.div`
-//   background: transparent;
-//   border-radius: 3px;
-//   border: 2px solid palevioletred;
-//   color: palevioletred;
-//   margin: 0 1em;
-//   padding: 0.25em 1em;
-// `;
 
 const Overlay = styled.div`
 position: fixed;
 top: 0;
 left: 0;
 width: 100%;
-height: 100%;
+// height: 100%;
+// height: 1000px;
+height: 100vh;
 background: #0000003a;
 transition: opacity 0.2s ease;
-display: ${props => props.show ? 'block' : 'none'};
+// overflow: hidden;
+// change to flex?
+display: ${props => props.show ? 'flex' : 'none'};
 `;
 
-// const show = {
-//   display: 'block',
-// };
+const ScrollableReviewList = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+`;
 
-// const hide = {
-//   display: 'none',
-// }
+const StyledEntireModal = styled.div`
+  // overflow: hidden;
+`;
+
+const LeftSideFlex = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 function Modal(props) {
   const {
@@ -67,15 +69,20 @@ function Modal(props) {
   } = props;
   const modal = (
     <>
-      {/* <Overlay className={show === true ? 'overlay' : 'hide'} onClick={closeModal}/> */}
-      <Overlay props={show} />
-      <StyledModal className={show === true ? 'modal' : 'hide'}>
-        {/* <Button /> */}
-        <ModalCloseButton onClick={closeModal}>X</ModalCloseButton>
-        <TotalRating totalRating={totalRating} />
-        <Ratings averageRatings={averageRatings} />
-        <ReviewList reviews={reviews} />
-      </StyledModal>
+      <StyledEntireModal>
+        <Overlay show={show} />
+        <StyledModal show={show}>
+          <LeftSideFlex>
+            <ModalCloseButton onClick={closeModal}>X</ModalCloseButton>
+            <TotalRating totalRating={totalRating} />
+            <Ratings averageRatings={averageRatings} show={show} />
+          </LeftSideFlex>
+          <ScrollableReviewList>
+            <ReviewList reviews={reviews} show={show} />
+          </ScrollableReviewList>
+        </StyledModal>
+      </StyledEntireModal>
+
     </>
   );
   return ReactDOM.createPortal(
