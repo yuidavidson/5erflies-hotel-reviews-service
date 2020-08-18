@@ -216,7 +216,7 @@ class App extends React.Component {
     }
     return (
       <div>
-        {/* <AppStyle props={this.state.show}> */}
+        {/* <AppStyle show={this.state.show}> */}
         <TotalRating totalRating={this.state.totalRating} show={this.state.show}/>
 
         {/* <StyledTotalRating totalRating={this.state.totalRating}> */}

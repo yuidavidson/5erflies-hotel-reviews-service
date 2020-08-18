@@ -9,7 +9,7 @@ const db = require('../db/index.js');
 
 const ENDPOINT = '/reviews';
 // const ENDPOINT = '/';
-const PORT = 3011;
+const PORT = 3001;
 
 app.use(express.static(__dirname + '/../client/dist'));
 
@@ -28,6 +28,10 @@ app.get(ENDPOINT, (req, res) => {
     }
   });
 });
+
+// app.get('/app1',function(req,res) {
+//   res.send("Hello world From Server 1");
+// });
 
 // app.get('/', function(req, res){
 //   res.send('id: ' + req.query.id);
