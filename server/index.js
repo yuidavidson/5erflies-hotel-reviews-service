@@ -9,7 +9,7 @@ const db = require('../db/index.js');
 
 const ENDPOINT = '/reviews';
 // const ENDPOINT = '/';
-const PORT = 3001;
+const PORT = 3002;
 
 app.use(express.static(__dirname + '/../client/dist'));
 
