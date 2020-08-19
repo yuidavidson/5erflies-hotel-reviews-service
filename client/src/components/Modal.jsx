@@ -86,7 +86,7 @@ function Modal(props) {
     </>
   );
   return ReactDOM.createPortal(
-    modal, document.getElementById('modal-root'),
+    modal, document.getElementById('modalRoot'),
   );
 }
 

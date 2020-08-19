@@ -7,7 +7,7 @@ import ReviewList from './ReviewList.jsx';
 import Modal from './Modal.jsx';
 
 const query = window.location.search;
-const ENDPOINT = `/reviews${query}`;
+const ENDPOINT = `/reviews/${query}`;
 
 const AppStyle = styled.div`
   // overflow: ${props => props.show ? 'hidden' : 'auto'};

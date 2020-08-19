@@ -46,7 +46,7 @@ class TotalRating extends React.Component {
         <div>
         <Wrapper>
           {/* <span> */}
-            <StarFlex src={star} alt='red star'/>
+            <StarFlex src='https://5erflies-reviews-icon.s3-us-west-1.amazonaws.com/rating-star-icon-14-16.png'/>
           {/* </span> */}
           <TotalRatingFlex show={this.props.show}>{this.props.totalRating.totalRating}</TotalRatingFlex>
           <ReviewCountFlex>({this.props.totalRating.reviewCount} reviews)</ReviewCountFlex>
