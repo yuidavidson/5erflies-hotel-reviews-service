@@ -34,7 +34,9 @@ const RatingType = styled.span`
 
 const RatingBar = styled.div`
   height: 4px;
-  width: 130px;
+  // width: 130px;
+  width: 10vh;
+  // width: 800%;
   // position: relative;
   background: rgba(0, 0, 0, 0.14);
   // -moz-border-radius: 25px;

@@ -6,10 +6,12 @@ const Review = require('./db/model/reviews.js');
 
 const db = mongoose.connection;
 
-const url = 'mongodb://localhost:27017/reviews';
+const url = 'mongodb://database/reviews';
+
+// const url = 'mongodb://database/reviews';
 
 // // use npm run seed to seed database with 100 properties with 25-75 reviews each
-mongoose.connect(url, (err) => {
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
   if (err) {
     console.log(err);
   } else {

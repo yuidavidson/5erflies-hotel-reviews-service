@@ -19,7 +19,7 @@ cursor: pointer;
 `;
 
 const StyledModal = styled.div`
-width: 70vh;
+width: 70%;
 height: 80vh;
 position: sticky;
 margin: 0px auto;
@@ -31,6 +31,7 @@ transition: transform 0.2s ease;
 font-family: Helvetica, Arial, sans-serif;
 // overflow: hidden;
 display: ${props => props.show ? 'flex' : 'none'};
+z-index: 3;
 `;
 
 const Overlay = styled.div`
@@ -46,6 +47,7 @@ transition: opacity 0.2s ease;
 // overflow: hidden;
 // change to flex?
 display: ${props => props.show ? 'flex' : 'none'};
+z-index: 2;
 `;
 
 const ScrollableReviewList = styled.div`
