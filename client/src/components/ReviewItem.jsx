@@ -6,7 +6,7 @@ import styled from 'styled-components';
 const ReviewItemFlex = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 10px 0;
 `;
 
 const UserInfoFlex = styled.div`
@@ -17,7 +17,7 @@ const UserInfoFlex = styled.div`
 const UserAvatarFlex = styled.img`
   height: 60px;
   border-radius: 50%;
-  padding: 7px;
+  padding: 5px 5px 5px 0;
   &:hover {
     cursor: pointer;
   };
@@ -31,7 +31,7 @@ const UserInfoTextFlex = styled.div`
 
 const UserNameFlex = styled.div`
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 16px;
   line-height: 20px;
   padding: 3px;
@@ -40,7 +40,7 @@ const UserNameFlex = styled.div`
 const DayPostedFlex = styled.div`
   color: grey;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 14px;
   line-height: 20px;
   padding: 3px;
@@ -48,14 +48,14 @@ const DayPostedFlex = styled.div`
 
 const ReviewFlex = styled.div`
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 16px;
   line-height: 24px;
-  padding: 5px;
+  padding: 5px 5px 5px 0;
 `;
 
 const ButtonFlex = styled.span`
-  font-weight: bold;
+  font-weight: 500;
   text-decoration: underline;
   display: ${(props) => props.longReview ? 'block' : 'none'};
   &:hover {
@@ -167,7 +167,7 @@ class ReviewItem extends React.Component {
 
   render() {
     // tried to use inline logical operator but couldn't figure out how to make it work => perhaps refactor later
-    if (this.props.show) {
+    if (this.props.show && this.props.review.response.hostname.length > 0) {
       return(
       <div>
         <ReviewItemFlex>

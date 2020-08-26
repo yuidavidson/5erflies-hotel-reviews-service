@@ -2,17 +2,11 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-// mongoose.connect('mongodb://database/reviews');
+// for using locally
+mongoose.connect('mongodb://localhost:27017/reviews', { useNewUrlParser: true, useUnifiedTopology: true });
 
-mongoose.connect('mongodb://database/reviews', { useNewUrlParser: true, useUnifiedTopology: true });
-
-// mongoose.Promise = global.Promise;
-
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log('connected to db');
-});
+// for using EC2
+// mongoose.connect('mongodb://database/reviews', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // schema for reviews
 

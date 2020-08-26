@@ -26,7 +26,7 @@ const RatingItem = styled.div`
 const RatingType = styled.span`
   width: 150px;
   font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 16px;
   line-height: 20px;
   padding-right: 50px;
@@ -61,7 +61,7 @@ const RatingNumber = styled.span`
   text-align: center;
   padding: 2px;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 12px;
   line-height: 16px;
 `;

@@ -2,9 +2,6 @@ const express = require('express');
 
 const app = express();
 
-// const seeder = require('../seeder.js');
-// const Review = require('../db/model/reviews.js');
-
 const db = require('../db/index.js');
 
 const ENDPOINT = '/reviews';
@@ -28,28 +25,6 @@ app.get(ENDPOINT, (req, res) => {
     }
   });
 });
-
-// app.get('/app1',function(req,res) {
-//   res.send("Hello world From Server 1");
-// });
-
-// app.get('/', function(req, res){
-//   res.send('id: ' + req.query.id);
-// });
-
-// post request of fake data
-// app.post(ENDPOINT, function (req, res) {
-
-//   Review.seedReviews((err, data) => {
-//     if (err) {
-//       console.log(err);
-//       res.sendStatus(500).send(err);
-//     } else {
-//       console.log(data);
-//       res.sendStatus(200);
-//     }
-//   });
-// });
 
 app.listen(PORT, (err) => {
   if (err) {

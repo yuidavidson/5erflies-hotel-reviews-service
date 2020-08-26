@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import reactModal from 'react-modal';
 import TotalRating from './TotalRating';
 import Ratings from './Ratings';
 import ReviewList from './ReviewList';
@@ -21,13 +22,17 @@ cursor: pointer;
 const StyledModal = styled.div`
 width: 70%;
 height: 80vh;
-position: sticky;
+position: relative;
 margin: 0px auto;
 padding: 20px;
 background-color: #fff;
 border-radius: 10px;
-transform: translateY(-700px);
-transition: transform 0.2s ease;
+// transform: translateY(-850px);
+transform: translateY(-75%);
+// transform: scale(1);
+// transition: transform 2s ease;
+// transition: all 2s ease-in-out;
+transition: transform 150ms ease-in-out;
 font-family: Helvetica, Arial, sans-serif;
 // overflow: hidden;
 display: ${props => props.show ? 'flex' : 'none'};
@@ -39,11 +44,11 @@ position: fixed;
 top: 0;
 left: 0;
 width: 100%;
-// height: 100%;
+height: 100%;
 // height: 1000px;
-height: 100vh;
+// height: 100vh;
 background: #0000003a;
-transition: opacity 0.2s ease;
+// transition: opacity 0.2s ease;
 // overflow: hidden;
 // change to flex?
 display: ${props => props.show ? 'flex' : 'none'};
@@ -71,8 +76,8 @@ function Modal(props) {
   } = props;
   const modal = (
     <>
-      <StyledEntireModal>
-        <Overlay show={show} />
+      <StyledEntireModal centered>
+        <Overlay show={show} onClick={closeModal} />
         <StyledModal show={show}>
           <LeftSideFlex>
             <ModalCloseButton onClick={closeModal}>X</ModalCloseButton>

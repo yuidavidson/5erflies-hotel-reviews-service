@@ -15,16 +15,17 @@ const StarFlex = styled.img`
 
 const TotalRatingFlex = styled.div`
   padding: 5px;
-  font-size: 22px;font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-size: 22px;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
   // font-size: ${props => props.show ? '50px' : '10px'};
-  font-weight: bold;
+  font-weight: 500;
 `;
 
 const ReviewCountFlex = styled.div`
   padding: 5px;
   font-size: 22px;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
-  font-weight: bold;
+  font-weight: 500;
 `;
 
 class TotalRating extends React.Component {

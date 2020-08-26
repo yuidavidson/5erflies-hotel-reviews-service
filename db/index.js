@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
-
-// mongoose.connect('mongodb://database/reviews');
-
-mongoose.connect('mongodb://database/reviews', { useNewUrlParser: true, useUnifiedTopology: true });
+// for using EC2
+// mongoose.connect('mongodb://database/reviews', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // mongoose.Promise = global.Promise;
 

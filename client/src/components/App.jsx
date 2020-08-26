@@ -12,7 +12,8 @@ const ENDPOINT = `/reviews/${query}`;
 const AppStyle = styled.div`
   // overflow: ${props => props.show ? 'hidden' : 'auto'};
   // height: 1000px;
-  // overflow: hidden;
+  overflow: hidden;
+  max-width: 1000px;
 `;
 
 // what a bad name
@@ -215,8 +216,8 @@ class App extends React.Component {
       );
     }
     return (
-      <div>
-        {/* <AppStyle show={this.state.show}> */}
+      // <div>
+        <AppStyle show={this.state.show}>
         <TotalRating totalRating={this.state.totalRating} show={this.state.show}/>
 
         {/* <StyledTotalRating totalRating={this.state.totalRating}> */}
@@ -225,10 +226,10 @@ class App extends React.Component {
         {<ModalOpenButton onClick={this.openModal}>Show all {this.state.totalRating.reviewCount} reviews</ModalOpenButton>}
 
         <>
-        <Modal closeModal={this.closeModal} show={this.state.show} totalRating={this.state.totalRating} averageRatings={this.state.averageRatings} reviews={this.state.reviews}/>
+        <Modal closeModal={this.closeModal} show={this.state.show} totalRating={this.state.totalRating} averageRatings={this.state.averageRatings} reviews={this.state.reviews} />
         </>
-        {/* </AppStyle> */}
-      </div>
+        </AppStyle>
+      // </div>
     );
   }
 }
